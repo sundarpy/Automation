@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  	<head>
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	    <!-- Bootstrap CSS -->
+	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+	    <title>Automation Test!</title>
+  	</head>
+  	<body>
+	    <section>
+	    	<div class="container-fluid">
+	    		<div class="row">
+	    			<div class="col-md-2"></div>
+	    			<div class="col-md-9">
+	    				<div id="data_input" style="text-align: center">
+	    					<section>
+	    						<h1 class="panel">Simulation Data</h1>
+	    					</section>
+	    					{% if data %}
+	    					<table class="table table-bordered">
+							  	<thead>
+								    <tr>
+								    	<th scope="col">#ID</th>
+								      	<th scope="col">Random Number</th>
+								      	<th scope="col">Time Stamp</th>
+								    </tr>
+							  	</thead>
+							  	{% for item in data %}
+							  	<tbody>
+								    <tr>
+								    	<td>{{ item.id }}</td>
+								      	<td>{{ item.number }}</td>
+								      	<td>{{ item.time_stamp }}</td>
+								    </tr>
+							  	</tbody>
+							  	{% endfor %}
+							</table>
+							{% else %}
+							<p>Data Not Found!</p>
+							{% endif %}
+
+							<div class="pagination">
+							    <span class="step-links">
+							        {% if data.has_previous %}
+							            <a href="?page=1">&laquo; First</a>
+							            <a href="?page={{ data.previous_page_number }}">Previous</a>
+							        {% endif %}
+
+							        <span class="current">
+							            Page {{ data.number }} of {{ data.paginator.num_pages }}.
+							        </span>
+
+							        {% if data.has_next %}
+							            <a href="?page={{ data.next_page_number }}">Next</a>
+							            <a href="?page={{ data.paginator.num_pages }}">Last &raquo;</a>
+							        {% endif %}
+							    </span>
+							</div>
+	    				</div>
+	    			</div>
+	    			<div class="col-md-2"></div>
+	    		</div>
+	    	</div>
+	    </section>
+
+	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	    <!-- AJAX CDN -->
+	    <!-- <script type="text/javascript">
+
+    		$(document).ready(function(){
+		    	(function worker() {
+				  	$.ajax({
+				    url: 'http://md1s0fec:7000/', 
+					    success: function(data) {
+					      $('#data_input').html(data);
+					      console.log("data here", data)
+					    },
+					    complete: function() {
+					      // Schedule the next request when the current one's complete
+					      setTimeout(worker, 6000);
+					    }
+			  		});
+				})();
+			});
+	    </script> -->
+  	</body>
+</html>
